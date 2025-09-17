@@ -13,6 +13,8 @@ CustomScrollView هو Widget في Flutter يسمحلك بعمل قائمة قا�
 # News App Date (11-9-2025)
 
 [رابط المشروع المحدث](https://github.com/user-attachments/assets/dd212cd9-44d5-4a54-808f-17744356748dy)
+https://github.com/user-attachments/assets/5b25ffcf-4bb4-465c-832f-dac8089b52fc
+
 
 
 ---
