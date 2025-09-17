@@ -15,18 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("News App"),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.teal,
-      // ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.teal,
             pinned: true,
-            snap: true,
-            floating: true,
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
               title: Text("News App", style: TextStyle(color: Colors.white)),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../consts.dart';
 import '../model/article.dart';
 import '../styles.dart';
 
@@ -29,8 +28,27 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(data.urlToImage ?? imageGeneral),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child:
+                  data.urlToImage != null
+                      ? Image.network(
+                        data.urlToImage!,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      )
+                      : Container(
+                        height: 200,
+                        width: double.infinity,
+                        color: Colors.grey[300],
+                        child: const Icon(
+                          Icons.image_not_supported,
+                          size: 60,
+                          color: Colors.black,
+                        ),
+                      ),
             ),
             const SizedBox(height: 8),
             Text(

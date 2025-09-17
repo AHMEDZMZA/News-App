@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/article.dart';
 import 'package:news_app/services/api_services.dart';
-import '../consts.dart';
 
 class ArticlesScreen extends StatefulWidget {
   const ArticlesScreen({super.key, required this.category});
@@ -28,7 +27,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isExpandedDescription = false;
+    bool isExpandedDescription = true;
 
     return Scaffold(
       appBar: AppBar(title: Text(" News ${widget.category}")),
@@ -38,34 +37,48 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
               : ListView.builder(
                 itemCount: articles!.length,
                 itemBuilder: (context, index) {
-                  final article = articles![index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          "ArticleDetailsScreen",
-                          arguments: article,
-                        );
-                      },
+                  return InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                            child: Image.network(
-                              article.urlToImage ?? imageGeneral,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushNamed(
+                                context,
+                                "ArticleDetailsScreen",
+                                arguments: articles![index],
+                              );
+                            },
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              child:
+                                  articles![index].urlToImage != null
+                                      ? Image.network(
+                                        articles![index].urlToImage!,
+                                        width: double.infinity,
+                                        fit: BoxFit.cover,
+                                      )
+                                      : Container(
+                                        width: double.infinity,
+                                        height: 200,
+                                        color: Colors.grey[300],
+                                        child: const Icon(
+                                          Icons.image_not_supported,
+                                          size: 60,
+                                          color: Colors.black,
+                                        ),
+                                      ),
                             ),
                           ),
+
                           SizedBox(height: 10),
                           Text(
-                            article.title ?? "No Title",
+                            articles![index].title ?? "No Title",
                             style: TextStyle(color: Colors.black),
                           ),
                           SizedBox(height: 12),
@@ -81,7 +94,7 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                                   isExpandedDescription
                                       ? TextOverflow.visible
                                       : TextOverflow.ellipsis,
-                              article.description ?? "No Description",
+                              articles![index].description ?? "No Description",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 15,

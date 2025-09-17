@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/article.dart';
-import '../../consts.dart';
 
 class ArticleItem extends StatefulWidget {
   const ArticleItem({super.key, required this.article});
@@ -22,15 +21,27 @@ class _ArticleItemState extends State<ArticleItem> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
-            child: Image.network(
-              widget.article.urlToImage ?? imageGeneral,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            child:
+                widget.article.urlToImage != null
+                    ? Image.network(
+                      widget.article.urlToImage!,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                    : Container(
+                      height: 200,
+                      width: double.infinity,
+                      color: Colors.grey[300],
+                      child: const Icon(
+                        Icons.image_not_supported,
+                        size: 60,
+                        color: Colors.black,
+                      ),
+                    ),
           ),
           SizedBox(height: 10),
           Text(
