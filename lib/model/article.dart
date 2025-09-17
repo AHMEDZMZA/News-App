@@ -1,4 +1,5 @@
 class Article {
+  final String? name;
   final String? author;
   final String? title;
   final String? description;
@@ -8,6 +9,7 @@ class Article {
   final String? content;
 
   Article({
+    required this.name,
     required this.author,
     required this.title,
     required this.description,

@@ -4,7 +4,7 @@ import 'package:news_app/model/article.dart';
 class ApiServices {
   Dio dio = Dio();
 
-  Future<List<Article>> getNews(String value) async {
+  Future<List<Article>> getNews({required String value}) async {
     Response response = await dio.get(
       "https://newsapi.org/v2/top-headlines?country=us&category=$value&apiKey=b051929dddce440594270b6a4611cff0",
     );
@@ -13,6 +13,7 @@ class ApiServices {
     for (var item in json["articles"]) {
       article.add(
         Article(
+          name: item["source"]["name"],
           author: item["author"],
           title: item["title"],
           description: item["description"],
