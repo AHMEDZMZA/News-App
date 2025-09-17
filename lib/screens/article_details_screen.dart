@@ -18,7 +18,14 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
     final data = ModalRoute.of(context)!.settings.arguments as Article;
     return Scaffold(
       appBar: AppBar(
-        title: Text(data.title ?? "No Title"),
+        title: Text(
+          data.name ?? "No Title",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.teal,
         centerTitle: true,
       ),
@@ -38,10 +45,23 @@ class _ArticleDetailsScreenState extends State<ArticleDetailsScreen> {
                         data.urlToImage!,
                         width: double.infinity,
                         fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Container(
+                            width: double.infinity,
+                            height: 200,
+                            color: Colors.grey[200],
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        },
                       )
                       : Container(
-                        height: 200,
                         width: double.infinity,
+                        height: 200,
                         color: Colors.grey[300],
                         child: const Icon(
                           Icons.image_not_supported,

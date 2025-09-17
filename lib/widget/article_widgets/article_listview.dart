@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/article.dart';
 import 'package:news_app/services/api_services.dart';
-import '../../model/category.dart';
 import 'article_item.dart';
 
 class ArticleListview extends StatefulWidget {
@@ -13,7 +12,6 @@ class ArticleListview extends StatefulWidget {
 
 class _ArticleListviewState extends State<ArticleListview> {
   ApiServices apiServices = ApiServices();
-  Category? category;
   List<Article>? article;
 
   @override
@@ -23,7 +21,7 @@ class _ArticleListviewState extends State<ArticleListview> {
   }
 
   getArticle() async {
-    article = await apiServices.getNews("general");
+    article = await apiServices.getNews(value: 'general');
     setState(() {});
   }
 

@@ -21,7 +21,9 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
   }
 
   getArticleCategory() async {
-    articles = await ApiServices().getNews(widget.category.toLowerCase());
+    articles = await ApiServices().getNews(
+      value: widget.category.toLowerCase(),
+    );
     setState(() {});
   }
 
@@ -39,12 +41,15 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pushNamed(
                                 context,
                                 "ArticleDetailsScreen",
@@ -62,6 +67,24 @@ class _ArticlesScreenState extends State<ArticlesScreen> {
                                         articles![index].urlToImage!,
                                         width: double.infinity,
                                         fit: BoxFit.cover,
+                                        loadingBuilder: (
+                                          context,
+                                          child,
+                                          loadingProgress,
+                                        ) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return Container(
+                                            width: double.infinity,
+                                            height: 200,
+                                            color: Colors.grey[200],
+                                            child: const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                          );
+                                        },
                                       )
                                       : Container(
                                         width: double.infinity,

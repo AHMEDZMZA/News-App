@@ -31,7 +31,6 @@ class CategoryItem extends StatelessWidget {
                 backgroundImage: NetworkImage(category.image),
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
-                // child: Text(category.name, style: Styles.style30),
               ),
               SizedBox(height: 8),
               Text(category.name, style: Styles.style30),
