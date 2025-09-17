@@ -20,4 +20,5 @@ https://github.com/user-attachments/assets/5b25ffcf-4bb4-465c-832f-dac8089b52fc
 
 # Update News App Date (15-9-2025) Using ApiService
 
-[رابط المشروع المحدث](https://github.com/user-attachments/assets/67da7b4c-3c12-405a-8e80-dad6a2c0a44e)
+https://github.com/user-attachments/assets/92d4cd12-cfa6-4b33-ae85-3058583be152
+
